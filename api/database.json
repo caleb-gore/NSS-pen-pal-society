@@ -1,0 +1,114 @@
+{
+  "authors": [
+    {
+      "id": 1,
+      "name": "Maya Angelou",
+      "email": "maya@maya.com"
+    },
+    {
+      "id": 2,
+      "name": "Mark Twain",
+      "email": "mark@mark.com"
+    },
+    {
+      "id": 3,
+      "name": "Emily Dickenson",
+      "email": "emily@emily.com"
+    }
+  ],
+  "recipients": [
+    {
+      "id": 1,
+      "name": "Maya Angelou",
+      "email": "maya@maya.com"
+    },
+    {
+      "id": 2,
+      "name": "Mark Twain",
+      "email": "mark@mark.com"
+    },
+    {
+      "id": 3,
+      "name": "Emily Dickenson",
+      "email": "emily@emily.com"
+    }
+  ],
+  "topics": [
+    {
+      "id": 1,
+      "topic": "Business"
+    },
+    {
+      "id": 2,
+      "topic": "Friendly"
+    },
+    {
+      "id": 3,
+      "topic": "Family"
+    },
+    {
+      "id": 4,
+      "topic": "Congratulations"
+    },
+    {
+      "id": 5,
+      "topic": "Condolences"
+    }
+  ],
+  "letters": [
+    {
+      "authorId": 1,
+      "recipientId": 2,
+      "topicIds": [
+        2
+      ],
+      "body": "This is my first letter to you Mark.  I am writing because I am not very fond of you.  You should do something about that.  Seriously.  ",
+      "date": "Wed May 18 2022",
+      "id": 1
+    },
+    {
+      "authorId": 2,
+      "recipientId": 1,
+      "topicIds": [
+        1,
+        2
+      ],
+      "body": "We're sorry, the number you have dialed has been disconnected or is no longer in service",
+      "date": "Wed May 18 2022",
+      "id": 2
+    },
+    {
+      "authorId": 3,
+      "recipientId": 2,
+      "topicIds": [
+        1,
+        4
+      ],
+      "body": "New phone who this",
+      "date": "Wed May 18 2022",
+      "id": 3
+    },
+    {
+      "authorId": 2,
+      "recipientId": 3,
+      "topicIds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "body": "thiohw ",
+      "date": "Wed May 18 2022",
+      "id": 4
+    },
+    {
+      "authorId": 2,
+      "recipientId": 2,
+      "topicIds": [],
+      "body": "jhrhawrthjkl",
+      "date": "Wed May 18 2022",
+      "id": 5
+    }
+  ]
+}
