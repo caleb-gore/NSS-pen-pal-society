@@ -1,22 +1,27 @@
 import { fetchAuthors, fetchLetters, fetchRecipients, fetchTopics } from "./dataAccess.js"
 import { PenPalSociety } from "./PenPalSociety.js"
-/* ---------- ^^Import functions^^ ---------- */
+/* ----- ^^Import functions^^ ----- */
 
-/* ---------- query selector ---------- */
+
+/* ----- query selector ----- */
 const mainContainer = document.querySelector('#container')
 
-/* ---------- render function ---------- */
+
+/* ----- render function ----- */
 const render = () => {
-    fetchAuthors().then(() => fetchRecipients())
+    fetchAuthors()
+    .then(() => fetchRecipients())
     .then(() => fetchTopics())
     .then(() => fetchLetters())
     .then(() => mainContainer.innerHTML = PenPalSociety())
 }
 
-/* ---------- render HTML ---------- */
+
+/* ----- call render function ----- */
 render()
 
-/* ---------- event listener (state changed) ---------- */
+
+/* ----- event listener (state changed) ----- */
 mainContainer.addEventListener(
     "stateChanged",
     customEvent => {
