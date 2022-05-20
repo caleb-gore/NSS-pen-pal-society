@@ -47,10 +47,7 @@ const findTopics = (letterObject) => {
         if (topicIds.includes(topic.id))
         html += `<p class="badge bg-info text-dark">${topic.topic}</p>  ` 
     })
-    // topicIds.forEach((id) => {
-    //     const topic = topics.find(topic => topic.id === id)
-    //     html += `<p>${topic.topic}</p>` 
-    // })
+    
     return html
 }
 

@@ -6,9 +6,9 @@ import {
 } from "./dataAccess.js";
 /* ----- ^^import funcitons^^ ----- */
 
-document.addEventListener('submit', (event) => {
-  event.preventDefault()
-})
+document.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
 
 /* ----- build form HTML ----- */
 export const Form = () => {
@@ -18,7 +18,7 @@ export const Form = () => {
             <div class="mb-3">
                 <label for="authors" class="form-label mt-2">Author</label>
                 <select class="form-select w-25" name="author" id="authors">
-                <option selected>choose...</option>
+                <option selected value="0">choose...</option>
                 ${authorsHTML()}
                 </select>
             </div>
@@ -35,7 +35,7 @@ export const Form = () => {
             <div class="mb-3">
                 <label class="form-label" for="recipients">Recipient</label>
                 <select name="recipient" id="recipients" class="form-select w-25">
-                    <option value="">choose...</option>
+                    <option value="0">choose...</option>
                     ${recipientsHTML()}
                 </select>
             </div>
@@ -43,7 +43,6 @@ export const Form = () => {
             <button class="btn btn-dark mb-3" type="submit" id="submitRequest">Send Letter</button>
     </div>`;
 };
-
 
 /* ----- build form elements from API data ----- */
 const authorsHTML = () => {
@@ -74,32 +73,23 @@ const recipientsHTML = () => {
     .join("");
 };
 
-
 /* ----- save form data to API ----- */
 const mainContainer = document.querySelector("#container");
-
 
 /* click event listener */
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "submitRequest") {
-    clickEvent.preventDefault()
-    const authorSelect = document.querySelector("#authors");
-    const authorId = parseInt(
-      authorSelect.options[authorSelect.selectedIndex].value
-    );
-    const recipientSelect = document.querySelector("#recipients");
-    const recipientId = parseInt(
-      recipientSelect.options[recipientSelect.selectedIndex].value
-    );
+    clickEvent.preventDefault();
+    const authorId = parseInt(document.querySelector("#authors").value);
+    const recipientId = parseInt(document.querySelector("#recipients").value);
     const body = document.querySelector('textarea[name="body"]').value;
-    const checkboxes = document.getElementsByName("topic");
     let topicIds = [];
-
-    for (let i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i].checked === true) {
-        topicIds.push(parseInt(checkboxes[i].value));
-      }
-    }
+    const checkboxes = document.querySelectorAll(
+      "input[type=checkbox]:checked"
+    );
+    checkboxes.forEach((checkbox) => {
+      topicIds.push(parseInt(checkbox.value));
+    });
 
     const dataToSendToAPI = {
       authorId: authorId,
@@ -110,37 +100,13 @@ mainContainer.addEventListener("click", (clickEvent) => {
     };
 
     if (
-      dataToSendToAPI.authorId !== null &&
-      dataToSendToAPI.recipientId !== null &&
-      dataToSendToAPI.body !== ""
+      dataToSendToAPI.authorId === 0 ||
+      dataToSendToAPI.recipientId === 0 ||
+      dataToSendToAPI.body === ""
     ) {
-      sendLetter(dataToSendToAPI);
-    } else {
       window.alert("Please complete form before clicking 'Send'");
+    } else {
+      sendLetter(dataToSendToAPI);
     }
   }
 });
-
-/* ---------- Stretch Goal ---------- */
-
-/* 
-- Allow users to select more than one topic
-- All selected topics should be shown in letters section
-*/
-
-/* ---------- ALGORHITHM ----------*/
-
-/*
------ on Form.js -----
-- change radio buttons to checkboxes >>>
-- iterate the checkboxes
-- parse integer save value of checked boxes into array (topicIds: []) that replaces topicId variable
-- save new array in dataToSendToAPI object (change topicId to topicIds)
-
------ on Letters.js -----
-- change findTopic() to findTopics()
-- iterate through topics array
-- for every topic, find the id in the topicIds array that matches that topic's id
-- if there is a match, return the topic name
-- if not, return nothing
-*/
